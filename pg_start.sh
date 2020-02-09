@@ -1,0 +1,1 @@
+docker run -p 5432:5432 --name ms_pg -v /home/sacarvalho/workspace/microservicos/pg_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres -d postgres

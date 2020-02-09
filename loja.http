@@ -1,0 +1,23 @@
+
+
+POST http://localhost:8080/pedido
+Content-Type: application/json
+
+{
+    "endereco" : {
+        "numero":"123",
+        "logradouro" : "Teste",
+        "uf": "SP"
+    },
+    "itensPedido": [
+        {
+            "nome": "Teste 1"
+        },
+        {
+            "nome": "Teste 2"
+        },
+        {
+            "nome": "Teste 3"
+        }
+    ]
+}
