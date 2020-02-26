@@ -1,17 +1,43 @@
 ###
-GET http://localhost:8080/fornecedor/7
+GET http://localhost:8083/fornecedor/1
 Content-Type: application/json
 
 ###
-POST http://localhost:8080/fornecedor
+GET http://localhost:8083/fornecedor
+Content-Type: application/json
+
+###
+POST http://localhost:8083/fornecedor
 Content-Type: application/json
 
 {
-  "uf": "SP",
-  "itens": [
-    {
-      "nome": "Escova de dentes",
-      "codigo": "0101010"
-    }
-  ]
+  "nome": "Escova de dente",
+  "quantidade": 140
+}
+
+###
+POST http://localhost:8083/fornecedor
+Content-Type: application/json
+
+{
+  "nome": "Pasta de dente",
+  "quantidade": 15
+}
+
+###
+POST http://localhost:8083/fornecedor
+Content-Type: application/json
+
+{
+  "nome": "Fio Dental",
+  "quantidade": 128
+}
+
+###
+POST http://localhost:8083/fornecedor
+Content-Type: application/json
+
+{
+  "nome": "Flúor",
+  "quantidade": 35
 }

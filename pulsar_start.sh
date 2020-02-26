@@ -1,0 +1,1 @@
+docker run -p 6650:6650   -p 8080:8080 --name pulsar  -v $PWD/pulsar_data:/pulsar/data apachepulsar/pulsar   bin/pulsar standalone
