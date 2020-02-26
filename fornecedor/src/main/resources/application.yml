@@ -1,0 +1,21 @@
+quarkus:
+  http:
+    port: 8083
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fornecedor
+    driver: org.postgresql.Driver
+    username: postgres
+  hibernate-orm:
+    generation: drop-and-create
+  eureka:
+    port: 8083
+    vip-address: localhost
+    prefer-same-zone: true
+    should-use-dns: false
+    name: fornecedor
+    host-name: localhost
+    region: default
+    home-page-url: /
+    health-check-url: /health/live
+    service-url:
+      default: http://localhost:8761/eureka
