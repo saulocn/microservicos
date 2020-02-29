@@ -1,0 +1,1 @@
+docker run -d --name ms-mongo -e MONGO_INITDB_ROOT_USERNAME=root -p 27017:27017 -e MONGO_INITDB_ROOT_PASSWORD=root -v /home/sacarvalho/workspace/microservicos/mongo_data:/data/db  mongo
