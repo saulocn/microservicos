@@ -17,6 +17,7 @@ public class Produto {
     private String nome;
     private String codigo;
     private Integer quantidade;
+    private String ufFornecedor;
 
     public Produto() {
     }
@@ -28,16 +29,33 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
+    public Produto(Long id, String nome, String codigo, Integer quantidade, String ufFornecedor) {
+        this.id = id;
+        this.nome = nome;
+        this.codigo = codigo;
+        this.quantidade = quantidade;
+        this.ufFornecedor = ufFornecedor;
+    }
+
     public Produto(ProdutoVO produto) {
         this.id = produto.getId();
         this.nome = produto.getNome();
         this.quantidade = produto.getQuantidade();
+        this.ufFornecedor = produto.getUfFornecedor();
     }
 
     public Produto(Long id, String nome, String codigo) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
+    }
+
+    public String getUfFornecedor() {
+        return ufFornecedor;
+    }
+
+    public void setUfFornecedor(String ufFornecedor) {
+        this.ufFornecedor = ufFornecedor;
     }
 
     public Long getId() {

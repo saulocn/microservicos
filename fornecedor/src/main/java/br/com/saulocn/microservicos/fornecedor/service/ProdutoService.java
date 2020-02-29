@@ -36,4 +36,16 @@ public class ProdutoService {
         produtoDAO.delete(id);
     }
 
+    public boolean hasInStock(List<Long> ids) {
+        final List<Produto> produtos = produtoDAO.getByIds(ids);
+        boolean hasInStock = true;
+        for (Produto produto : produtos) {
+            if (produto.getQuantidade() == 0) hasInStock = false;
+        }
+        return hasInStock;
+    }
+
+    public List<ProdutoVO> getByIds(List<Long> ids) {
+        return asProdutoVOList(produtoDAO.getByIds(ids));
+    }
 }

@@ -39,4 +39,8 @@ public class ProdutoDAO {
         produto.setQuantidade(quantidade);
         em.merge(produto);
     }
+
+    public List<Produto> getByIds(List<Long> ids) {
+        return em.createQuery("SELECT p FROM Produto p WHERE p.id IN :ids", Produto.class).setParameter("ids", ids).getResultList();
+    }
 }

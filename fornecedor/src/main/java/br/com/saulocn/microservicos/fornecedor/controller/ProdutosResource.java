@@ -15,10 +15,10 @@ import br.com.saulocn.microservicos.fornecedor.controller.vo.ProdutoVO;
 import br.com.saulocn.microservicos.fornecedor.service.ProdutoService;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
-@Path("/fornecedor")
+@Path("/produtos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class FornecedorResource {
+public class ProdutosResource {
 
     @Inject
     ProdutoService produtoService;
@@ -43,6 +43,18 @@ public class FornecedorResource {
     @PUT
     public void updateProduto(ProdutoVO produto) {
         produtoService.update(produto);
+    }
+
+    @GET
+    @Path("/hasInStock/ids")
+    public boolean hasInStock(List<Long> ids) {
+        return produtoService.hasInStock(ids);
+    }
+
+    @GET
+    @Path("/ids")
+    public List<ProdutoVO> getByIds(List<Long> ids) {
+        return produtoService.getByIds(ids);
     }
 
     @DELETE
