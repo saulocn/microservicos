@@ -1,15 +1,17 @@
 package br.com.saulocn.microservicos.loja.controller.vo;
 
-import br.com.saulocn.microservicos.loja.model.ItemPedido;
-import br.com.saulocn.microservicos.loja.model.Pedido;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import br.com.saulocn.microservicos.loja.model.ItemPedido;
+import br.com.saulocn.microservicos.loja.model.Pedido;
 
 public class PedidoVO {
-    @JsonIgnore
-    private Long id;
+
+    private UUID id;
 
     private LocalDateTime data;
 
@@ -38,15 +40,19 @@ public class PedidoVO {
 
     private List<ItemPedidoVO> toItensPedidoVO(List<ItemPedido> itensPedido) {
         List<ItemPedidoVO> itensPedidoVO = new ArrayList<>();
-        itensPedido.forEach(item->itensPedidoVO.add(new ItemPedidoVO(item)));
+        itensPedido.forEach(item -> itensPedidoVO.add(new ItemPedidoVO(item)));
         return itensPedidoVO;
     }
 
-    public Long getId() {
+    public static List<PedidoVO> toPedidosVO(List<Pedido> pedidos) {
+        return pedidos.stream().map(pedido -> new PedidoVO(pedido)).collect(Collectors.toList());
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -97,6 +103,7 @@ public class PedidoVO {
     public void setStatus(StatusPedido status) {
         this.status = status;
     }
+
 
     @Override
     public String toString() {

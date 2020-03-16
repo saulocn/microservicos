@@ -1,6 +1,6 @@
 
 
-POST http://localhost:8080/pedido
+POST http://localhost:8081/pedido
 Content-Type: application/json
 
 {
@@ -11,13 +11,12 @@ Content-Type: application/json
     },
     "itensPedido": [
         {
-            "nome": "Teste 1"
-        },
-        {
-            "nome": "Teste 2"
-        },
-        {
-            "nome": "Teste 3"
+            "produtoId": 1,
+            "quantidade": 1
         }
     ]
 }
+
+###
+GET http://localhost:8081/pedido/1
+Content-Type: application/json

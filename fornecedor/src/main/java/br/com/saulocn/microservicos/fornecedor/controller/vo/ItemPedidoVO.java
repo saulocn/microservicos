@@ -1,12 +1,12 @@
-package br.com.saulocn.microservicos.loja.controller.vo;
+package br.com.saulocn.microservicos.fornecedor.controller.vo;
 
 
-import java.util.UUID;
-
-import br.com.saulocn.microservicos.loja.model.ItemPedido;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ItemPedidoVO {
-    private UUID id;
+    @JsonIgnore
+    private Long id;
+    @JsonIgnore
     private String nome;
     private Long produtoId;
     private Integer quantidade;
@@ -14,12 +14,6 @@ public class ItemPedidoVO {
     public ItemPedidoVO() {
     }
 
-    public ItemPedidoVO(ItemPedido item) {
-        this.id = item.getId();
-        this.nome = item.getNome();
-        this.produtoId = item.getProdutoId();
-        this.quantidade = item.getQuantidade();
-    }
 
     public Long getProdutoId() {
         return produtoId;
@@ -37,11 +31,11 @@ public class ItemPedidoVO {
         this.quantidade = quantidade;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,3 +55,4 @@ public class ItemPedidoVO {
                 '}';
     }
 }
+

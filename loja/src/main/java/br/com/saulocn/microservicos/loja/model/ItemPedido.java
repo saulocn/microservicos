@@ -1,16 +1,33 @@
 package br.com.saulocn.microservicos.loja.model;
 
-import br.com.saulocn.microservicos.loja.controller.vo.ItemPedidoVO;
+import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import br.com.saulocn.microservicos.loja.controller.vo.ItemPedidoVO;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
+@SequenceGenerator(sequenceName = "sq_item", name = "item_generator")
 public class ItemPedido {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator",
+            parameters = {
+                    @Parameter(
+                            name = "uuid_gen_strategy_class",
+                            value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+                    )
+            }
+    )
+    private UUID id;
+
     private String nome;
     private Long produtoId;
     private Integer quantidade;
@@ -39,11 +56,11 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

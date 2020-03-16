@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import br.com.saulocn.microservicos.fornecedor.controller.vo.ItemPedidoVO;
 import br.com.saulocn.microservicos.fornecedor.controller.vo.ProdutoVO;
 import br.com.saulocn.microservicos.fornecedor.service.ProdutoService;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -45,10 +46,10 @@ public class ProdutosResource {
         produtoService.update(produto);
     }
 
-    @GET
+    @POST
     @Path("/hasInStock/ids")
-    public boolean hasInStock(List<Long> ids) {
-        return produtoService.hasInStock(ids);
+    public boolean hasInStock(List<ItemPedidoVO> itens) {
+        return produtoService.hasInStock(itens);
     }
 
     @GET

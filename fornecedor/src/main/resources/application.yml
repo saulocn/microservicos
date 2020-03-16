@@ -9,7 +9,7 @@ quarkus:
     generation: drop-and-create
   eureka:
     port: 8083
-    vip-address: localhost
+    vip-address: fornecedor
     prefer-same-zone: true
     should-use-dns: false
     name: fornecedor

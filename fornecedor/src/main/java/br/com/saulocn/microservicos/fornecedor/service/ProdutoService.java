@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import br.com.saulocn.microservicos.fornecedor.controller.vo.ItemPedidoVO;
 import br.com.saulocn.microservicos.fornecedor.controller.vo.ProdutoVO;
 import br.com.saulocn.microservicos.fornecedor.dao.ProdutoDAO;
 import br.com.saulocn.microservicos.fornecedor.model.Produto;
@@ -36,13 +37,15 @@ public class ProdutoService {
         produtoDAO.delete(id);
     }
 
-    public boolean hasInStock(List<Long> ids) {
-        final List<Produto> produtos = produtoDAO.getByIds(ids);
-        boolean hasInStock = true;
-        for (Produto produto : produtos) {
-            if (produto.getQuantidade() == 0) hasInStock = false;
+    public boolean hasInStock(List<ItemPedidoVO> itens) {
+        System.out.println(itens);
+        for (ItemPedidoVO item : itens) {
+            final Produto produto = produtoDAO.getById(item.getProdutoId());
+            if (produto == null || produto.getQuantidade() < item.getQuantidade()) {
+                return false;
+            }
         }
-        return hasInStock;
+        return true;
     }
 
     public List<ProdutoVO> getByIds(List<Long> ids) {

@@ -1,7 +1,10 @@
 package br.com.saulocn.microservicos.loja.controller;
 
+import java.util.List;
+
 import br.com.saulocn.microservicos.loja.controller.vo.PedidoVO;
 import br.com.saulocn.microservicos.loja.service.PedidoService;
+import br.com.saulocn.microservicos.loja.service.exceptions.NoStockAvaibleException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,18 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class PedidoController {
 
     @Autowired
-    PedidoService pedidoService;
+    private PedidoService pedidoService;
 
     @PostMapping
-    public PedidoVO novoPedido(@RequestBody PedidoVO pedidoVO) {
-        pedidoService.criaPedido(pedidoVO);
-        return pedidoVO;
+    public PedidoVO novoPedido(@RequestBody PedidoVO pedidoVO) throws NoStockAvaibleException {
+        return pedidoService.criaPedido(pedidoVO);
     }
 
     @GetMapping("/{id}")
     public PedidoVO getPedido(@PathVariable Long id) {
-        final PedidoVO pedidoVO = pedidoService.obterPedido(id);
-        return pedidoVO;
+        return pedidoService.obterPedido(id);
+    }
+
+    @GetMapping()
+    public List<PedidoVO> listPedidos() {
+        return pedidoService.listaPedidos();
     }
 
 }

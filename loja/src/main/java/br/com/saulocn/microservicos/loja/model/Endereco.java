@@ -1,16 +1,19 @@
 package br.com.saulocn.microservicos.loja.model;
 
-import br.com.saulocn.microservicos.loja.controller.vo.EnderecoVO;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import br.com.saulocn.microservicos.loja.controller.vo.EnderecoVO;
 
 @Entity
+@SequenceGenerator(sequenceName = "sq_endereco", name = "endereco_generator")
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "endereco_generator")
     private Long id;
     private String uf;
     private String logradouro;

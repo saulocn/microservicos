@@ -1,27 +1,40 @@
 package br.com.saulocn.microservicos.loja.model;
 
-import br.com.saulocn.microservicos.loja.controller.vo.ItemPedidoVO;
-import br.com.saulocn.microservicos.loja.controller.vo.PedidoVO;
-import br.com.saulocn.microservicos.loja.controller.vo.StatusPedido;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import br.com.saulocn.microservicos.loja.controller.vo.ItemPedidoVO;
+import br.com.saulocn.microservicos.loja.controller.vo.PedidoVO;
+import br.com.saulocn.microservicos.loja.controller.vo.StatusPedido;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 @Entity
 public class Pedido {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator",
+            parameters = {
+                    @Parameter(
+                            name = "uuid_gen_strategy_class",
+                            value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+                    )
+            }
+    )
+    private UUID id;
     private LocalDateTime data;
     private LocalDateTime dataEntrega;
 
@@ -56,11 +69,11 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   jpa:
     show-sql: true
@@ -9,11 +9,23 @@ spring:
     url: jdbc:postgresql://localhost:5432/loja
     username: postgres
   application:
-        name: 'loja'
-
+    name: 'loja'
+pulsar:
+  url: localhost
+  port: 6650
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      default-zone: http://localhost:8761/eureka
+    instance:
+      preferIpAddress: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
