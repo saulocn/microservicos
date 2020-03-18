@@ -4,4 +4,8 @@ function list(){
     return dao.list()
 }
 
-module.exports = {list};
+function insert(pedido){
+    return dao.insert(pedido)
+}
+
+module.exports = {list, insert};

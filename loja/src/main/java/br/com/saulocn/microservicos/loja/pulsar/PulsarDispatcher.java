@@ -10,9 +10,7 @@ import org.apache.pulsar.client.api.PulsarClientException;
 import org.apache.pulsar.client.impl.schema.JSONSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,17 +18,15 @@ public class PulsarDispatcher<T> implements Closeable {
 
     private static final Logger LOG = LoggerFactory.getLogger(PulsarDispatcher.class);
 
-    @Value("${pulsar.url}")
-    private String url = "localhost";
+    private String url;
 
-    @Value("${pulsar.port}")
-    private String port = "6650";
-    @Autowired
-    Environment environment;
+    private String port;
+
     PulsarClient client;
 
-
-    public PulsarDispatcher() throws PulsarClientException {
+    public PulsarDispatcher(@Value("${pulsar.url}") String url, @Value("${pulsar.port}") String port) throws PulsarClientException {
+        this.url = url;
+        this.port = port;
         this.client = PulsarClient.builder()
                 .serviceUrl(String.format("pulsar://%s:%s", url, port))
                 .build();
