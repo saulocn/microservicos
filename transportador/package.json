@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eureka-js-client": "^4.5.0",
+    "ip": "^1.1.5",
     "mongodb": "^3.5.4",
     "pulsar-client": "^1.1.0",
     "restify": "^8.5.1"
