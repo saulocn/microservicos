@@ -17,10 +17,11 @@ public class LojaApplication {
         SpringApplication.run(LojaApplication.class, args);
     }
 
+
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate() {
-		return new RestTemplate();
+        return new RestTemplate();
     }
 
 }
