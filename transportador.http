@@ -1,0 +1,7 @@
+###
+GET http://localhost:3000/pedidos/7f000101-70f0-1b22-8170-f02bd6100000
+Content-Type: application/json
+
+###
+PUT http://localhost:3000/pedidos/efetua-entrega/7f000101-70f0-1b22-8170-f02bd6100000
+Content-Type: application/json

@@ -1,5 +1,7 @@
 package br.com.saulocn.microservicos.loja.service;
 
+import static br.com.saulocn.microservicos.loja.controller.vo.StatusPedido.INICIADO;
+
 import java.util.List;
 
 import br.com.saulocn.microservicos.loja.client.FornecedorClient;
@@ -33,6 +35,7 @@ public class PedidoService {
         LOG.info("Criando novo pedidoVO {}", pedidoVO);
         if (hasInStock) {
             Pedido pedido = new Pedido(pedidoVO);
+            pedido.setStatus(INICIADO);
             pedido = pedidoRepository.saveAndFlush(pedido);
             pedidoVO = new PedidoVO(pedido);
             pulsarDispatcher.send("pedidos", PedidoVO.class, pedidoVO);
